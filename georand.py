@@ -36,14 +36,14 @@ def main(argv):
 		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M')
 		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M')
 		randdate = random_date(d1, d2)
-		enddate = randdate + timedelta(days=randint(0,100))
+		enddate = randdate + timedelta(days=randint(0,365))
 	
 		lat = random.uniform(minlat,maxlat)
 		long = random.uniform(minlong,maxlong)
 		
 		#discreteval = ''.join(random.choice(string.lowercase) for x in range(1))
 		discreteval = ''.join(random.choice(['apple', 'orange', 'banana', 'lemon', 'kiwi']))
-		continuousint = randint(0,365)
+		continuousint = randint(0,100)
 		continiousfloat = random.random()
 		
 		#print "%s%s%s%s%s" % (randdate,',',lat,',',long)
