@@ -32,6 +32,8 @@ def main(argv):
         maxlong = float(sys.argv[6])
 	rows = int(sys.argv[7])
 	
+	print "id,startdate,enddate,latitude,longtitude,category,integer,float"
+	
 	for num in range(0,rows):
 		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M')
 		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M')
