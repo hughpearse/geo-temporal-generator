@@ -21,7 +21,7 @@ def main(argv):
 		if (opt == '-h') or (opt == '--help'):
 			print './georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>'
 			print './georand.py "2000-01-01 00:00" "2015-12-21 23:59" 53.438528 -6.403656 53.196751 -6.099472 20'
-			print 'Outputs: randomdatetime enddatetime randomlatitude randomlongtitude randomdiscreteval randomcontiniousint randomcontiniousfloat'
+			print 'Outputs: id randomdatetime enddatetime randomlatitude randomlongtitude randomdiscreteval randomcontiniousint randomcontiniousfloat'
 			sys.exit()
 	
 	mindatetime = str(sys.argv[1])
@@ -48,7 +48,7 @@ def main(argv):
 		
 		#print "%s%s%s%s%s" % (randdate,',',lat,',',long)
 		#print "%s%s%s%s" % ('http://www.openstreetmap.org/#map=16/',lat,'/',long)
-		print "%s,%s,%s,%s,%s,%s,%s" % (randdate,enddate,lat,long,discreteval,continuousint,continiousfloat)
+		print "%s,%s,%s,%s,%s,%s,%s,%s" % (num,randdate,enddate,lat,long,discreteval,continuousint,continiousfloat)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
