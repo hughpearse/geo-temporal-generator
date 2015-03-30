@@ -2,9 +2,16 @@
 Randomly generate geospatial, temporal, continuous and discrete data in CSV format. The start date and time is output within a specified range, currently the end date and time is a random number of days between 0-365 days after the start date; the latitude and longtitude coordinates are output within a specified extent; the continious and discrete data can be easily modified, the number of rows output can be specified.
 
 Preview on google fusion tables:
-[Fusion tables map](https://www.google.com/fusiontables/embedviz?q=select+col3%2C+col4+from+1vt2XN3Z6dQzBKRqeKJAIS-RvhL3KJD-Pk91mdkS1+where+col5+in+%28%27apple%27%2C+%27banana%27%2C+%27kiwi%27%2C+%27orange%27%2C+%27lemon%27%29+limit+1000&viz=HEATMAP&h=true&lat=53.30503138535016&lng=-6.233367919921875&t=1&z=10&l=col3&y=3&tmplt=5&hmd=true&hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&hmo=0.6000000238418579&hmr=10&hmw=0&hml=TWO_COL_LAT_LNG)
 
-[Fusion tables chart integer](https://www.google.com/fusiontables/embedviz?containerId=googft-gviz-canvas&q=select+col1%2C+col6+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+order+by+col1+asc&viz=GVIZ&t=SCATTER&rmax=250&uiversion=2&gco_forceIFrame=true&gco_hasLabelsColumn=true&width=500&height=300)
+[Fusion tables document](https://www.google.com/fusiontables/DataSource?docid=11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch)
+
+``` html
+<iframe width="500" height="300" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col3%2C+col4+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=53.32513175791224&amp;lng=-6.1969757080078125&amp;t=1&amp;z=10&amp;l=col3&amp;y=7&amp;tmplt=8&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.6000000238418579&amp;hmr=10&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
+```
+
+[Fusion tables map](https://www.google.com/fusiontables/embedviz?q=select+col3%2C+col4+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+limit+1000&viz=HEATMAP&h=true&lat=53.32513175791224&lng=-6.1969757080078125&t=1&z=10&l=col3&y=7&tmplt=8&hmd=true&hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&hmo=0.6000000238418579&hmr=10&hmw=0&hml=TWO_COL_LAT_LNG)
+
+[Fusion tables integer scatterplot](https://www.google.com/fusiontables/embedviz?containerId=googft-gviz-canvas&q=select+col1%2C+col6+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+order+by+col1+asc&viz=GVIZ&t=SCATTER&rmax=250&uiversion=2&gco_forceIFrame=true&gco_hasLabelsColumn=true&width=500&height=300)
 
 ##Usage:
 ```
@@ -15,7 +22,7 @@ $ ./georand.py -h
 
 ##Outputs:
 ```
-id,startdatetime,enddatetime,latitude,longtitude,discreteval,continiousint,continiousfloat
+Id,Startdate,Enddate,Latitude,Longtitude,Category,Integer,Float
 0,2002-12-29 09:06:38,2003-04-04 09:06:38,53.2727969109,-6.12257493631,banana,266,0.564181956254
 1,2013-05-28 01:22:31,2013-08-08 01:22:31,53.303376253,-6.24554711517,kiwi,263,0.678119433705
 2,2006-03-30 14:18:58,2006-06-30 14:18:58,53.3513337935,-6.12931396636,orange,49,0.213356952542
