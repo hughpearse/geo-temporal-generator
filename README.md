@@ -5,9 +5,7 @@ Preview on google fusion tables:
 
 [Fusion tables document](https://www.google.com/fusiontables/DataSource?docid=11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch)
 
-``` html
 <iframe width="500" height="300" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col3%2C+col4+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+limit+1000&amp;viz=HEATMAP&amp;h=true&amp;lat=53.32513175791224&amp;lng=-6.1969757080078125&amp;t=1&amp;z=10&amp;l=col3&amp;y=7&amp;tmplt=8&amp;hmd=true&amp;hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&amp;hmo=0.6000000238418579&amp;hmr=10&amp;hmw=0&amp;hml=TWO_COL_LAT_LNG"></iframe>
-```
 
 [Fusion tables map](https://www.google.com/fusiontables/embedviz?q=select+col3%2C+col4+from+11o56wpO4PE1yuXCaQDlEtbuMKP90cbGg4NsTAQch+limit+1000&viz=HEATMAP&h=true&lat=53.32513175791224&lng=-6.1969757080078125&t=1&z=10&l=col3&y=7&tmplt=8&hmd=true&hmg=%2366ff0000%2C%2393ff00ff%2C%23c1ff00ff%2C%23eeff00ff%2C%23f4e300ff%2C%23f4e300ff%2C%23f9c600ff%2C%23ffaa00ff%2C%23ff7100ff%2C%23ff3900ff%2C%23ff0000ff&hmo=0.6000000238418579&hmr=10&hmw=0&hml=TWO_COL_LAT_LNG)
 
