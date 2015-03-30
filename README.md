@@ -10,7 +10,7 @@ $ ./georand.py -h
 
 ##Outputs:
 ```
-startdatetime enddatetime latitude longtitude discreteval continiousint continiousfloat
+id,startdatetime,enddatetime,latitude,longtitude,discreteval,continiousint,continiousfloat
 0,2002-12-29 09:06:38,2003-04-04 09:06:38,53.2727969109,-6.12257493631,banana,266,0.564181956254
 1,2013-05-28 01:22:31,2013-08-08 01:22:31,53.303376253,-6.24554711517,kiwi,263,0.678119433705
 2,2006-03-30 14:18:58,2006-06-30 14:18:58,53.3513337935,-6.12931396636,orange,49,0.213356952542
