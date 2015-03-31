@@ -22,7 +22,7 @@ def main(argv):
 	for opt, arg in opts:
 		if (opt == '-h') or (opt == '--help'):
 			print './georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>'
-			print './georand.py "2000-01-01 00:00" "2015-12-21 23:59" 53.438528 -6.403656 53.196751 -6.099472 20'
+			print './georand.py "2000-01-01 00:00:00" "2015-12-31 23:59:59" 53.438528 -6.403656 53.196751 -6.099472 20'
 			print 'Outputs: id,startdatetime,enddatetime,latitude,longtitude,discreteval,dichotomousval,continiousint,continiousfloat,"text"'
 			sys.exit()
 	
@@ -37,8 +37,8 @@ def main(argv):
 	print "Id,Startdate,Enddate,Latitude,Longtitude,Category,Bool,Integer,Float,Text"
 	
 	for num in range(0,rows):
-		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M')
-		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M')
+		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M:%S')
+		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M:%S')
 		randdate = random_date(d1, d2)
 		enddate = randdate + timedelta(days=randint(0,365), hours=randint(0,24), minutes=randint(0,60), seconds=randint(0,60))
 	
