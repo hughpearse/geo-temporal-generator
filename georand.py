@@ -12,6 +12,8 @@ def random_date(start, end):
 
 def main(argv):
 	
+	discretedata = ['apple', 'orange', 'banana', 'lemon', 'kiwi']
+	
 	try:
 		opts, args = getopt.getopt(argv,"h",["help"])
 	except getopt.GetoptError, e:
@@ -38,13 +40,12 @@ def main(argv):
 		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M')
 		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M')
 		randdate = random_date(d1, d2)
-		enddate = randdate + timedelta(days=randint(0,365))
+		enddate = randdate + timedelta(days=randint(0,365), hours=randint(0,24), minutes=randint(0,60), seconds=randint(0,60))
 	
 		lat = random.uniform(minlat,maxlat)
 		long = random.uniform(minlong,maxlong)
 		
-		#discreteval = ''.join(random.choice(string.lowercase) for x in range(1))
-		discreteval = ''.join(random.choice(['apple', 'orange', 'banana', 'lemon', 'kiwi']))
+		discreteval = ''.join(random.choice(discretedata))
 		continuousint = randint(0,100)
 		continiousfloat = random.random()
 		
