@@ -23,7 +23,7 @@ def main(argv):
 		if (opt == '-h') or (opt == '--help'):
 			print './georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>'
 			print './georand.py "2000-01-01 00:00" "2015-12-21 23:59" 53.438528 -6.403656 53.196751 -6.099472 20'
-			print 'Outputs: id,startdatetime,enddatetime,latitude,longtitude,discreteval,continiousint,continiousfloat,"text"'
+			print 'Outputs: id,startdatetime,enddatetime,latitude,longtitude,discreteval,dichotomousval,continiousint,continiousfloat,"text"'
 			sys.exit()
 	
 	mindatetime = str(sys.argv[1])
@@ -34,7 +34,7 @@ def main(argv):
         maxlong = float(sys.argv[6])
 	rows = int(sys.argv[7])
 	
-	print "Id,Startdate,Enddate,Latitude,Longtitude,Category,Integer,Float,Text"
+	print "Id,Startdate,Enddate,Latitude,Longtitude,Category,Bool,Integer,Float,Text"
 	
 	for num in range(0,rows):
 		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M')
@@ -48,12 +48,13 @@ def main(argv):
 		discreteval = ''.join(random.choice(discretedata))
 		continuousint = randint(0,100)
 		continiousfloat = random.random()
+		dichotomousval = random.choice(['true','false'])
 		randomtext = ''.join([random.choice(string.ascii_lowercase + ' '*8 + 'aeiou'*8) for n in xrange(randint(16,56))]).lstrip().rstrip()
 		randomtext = re.sub(' +', ' ', randomtext)
 
 		#print "%s%s%s%s%s" % (randdate,',',lat,',',long)
 		#print "%s%s%s%s" % ('http://www.openstreetmap.org/#map=16/',lat,'/',long)
-		print "%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"" % (num,randdate,enddate,lat,long,discreteval,continuousint,continiousfloat,randomtext)
+		print "%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"" % (num,randdate,enddate,lat,long,discreteval,dichotomousval,continuousint,continiousfloat,randomtext)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
