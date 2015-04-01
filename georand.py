@@ -10,6 +10,11 @@ def random_date(start, end):
 	return start + timedelta(
 		seconds=randint(0, int((end - start).total_seconds())))
 
+def show_help():
+	print './georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>'
+	print './georand.py "2000-01-01 00:00:00" "2015-12-31 23:59:59" 53.438528 -6.403656 53.196751 -6.099472 20'
+	print 'Outputs: id,startdatetime,enddatetime,latitude,longtitude,discreteval,dichotomousval,continiousint,continiousfloat,"text"'
+
 def main(argv):
 	
 	discretedata = ['apple','orange','banana','lemon','kiwi']
@@ -21,10 +26,11 @@ def main(argv):
 		sys.exit(2)
 	for opt, arg in opts:
 		if (opt == '-h') or (opt == '--help'):
-			print './georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>'
-			print './georand.py "2000-01-01 00:00:00" "2015-12-31 23:59:59" 53.438528 -6.403656 53.196751 -6.099472 20'
-			print 'Outputs: id,startdatetime,enddatetime,latitude,longtitude,discreteval,dichotomousval,continiousint,continiousfloat,"text"'
+			show_help()
 			sys.exit()
+	if (len(sys.argv) == 1):
+		show_help()
+		sys.exit(0)
 	
 	mindatetime = str(sys.argv[1])
 	maxdatetime = str(sys.argv[2])
