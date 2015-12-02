@@ -15,6 +15,7 @@ $ ./georand.py -h
 ./georand.py <min datetime> <max datetime> <min lat> <min long> <max lat> <max long> <rows>
 ./georand.py "2000-01-01 00:00:00" "2015-12-21 23:59:00" 53.438528 -6.403656 53.196751 -6.099472 20
 ```
+Note: The mathematics of the lat long values is not obvious, permitted latitude values must fall within the range -85.05113 and +85.05113, the permitted longtitude values fall within the range -179.999999999 and +179.999999999.
 
 ##Outputs:
 ```
