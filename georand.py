@@ -2,6 +2,7 @@
 
 import sys, getopt, random, string, datetime
 import re
+from math import *
 from datetime import timedelta
 from datetime import datetime
 from random import randint
@@ -39,6 +40,13 @@ def main(argv):
         maxlat = float(sys.argv[5])
         maxlong = float(sys.argv[6])
 	rows = int(sys.argv[7])
+	
+	if( fabs(minlat) > 85.05113 or fabs(maxlat) > 85.05113 ):
+		print "Lattitude not within acceptable range"
+		sys.exit(0)
+	if( fabs(minlong) > 179.999999999 or fabs(maxlong) > 179.999999999 ):
+		print "Longtitude not within acceptable range"
+		sys.exit(0)
 	
 	print "Id,Startdate,Enddate,Latitude,Longtitude,Category,Bool,Integer,Float,Text"
 	
