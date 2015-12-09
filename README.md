@@ -1,5 +1,5 @@
 # geo-temporal-generator
-Randomly generate geospatial, temporal, continuous and discrete data in CSV format. The start date and time is output within a specified range, currently the end date and time is a random number of days between 0-365 days after the start date; the latitude and longtitude coordinates are output within a specified extent; the continious and discrete data can be easily modified, the number of rows output can be specified.
+Randomly generate geospatial, temporal, continuous and discrete data in CSV format. The start date and time is output within a specified range; the latitude and longtitude coordinates are output within a specified extent; the continious and discrete data can be easily modified, the number of rows output can be specified.
 
 Preview on google fusion tables:
 
