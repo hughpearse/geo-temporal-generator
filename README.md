@@ -41,3 +41,7 @@ Id,Startdate,Enddate,Latitude,Longtitude,Category,Integer,Float
 18,2009-04-05 20:10:05,2009-06-09 20:10:05,53.4092809498,-6.11408099593,banana,75,0.131390072968
 19,2008-10-19 03:41:05,2008-11-16 03:41:05,53.4108747758,-6.33198578886,lemon,362,0.606297113853
 ```
+
+##Creating Lines and Polygons:
+Non-intersecting lines and polygons can easily be created from the resulting CSV file. To create the polygons import the CSV file into QGIS by clicking "Layer" -> "Add Layer" -> "Delimited Text Layer". Create Polygons from Points by clicking "Vector" -> "Geometry Tools" -> "Voronoi Polygons". To create the lines, you must first create the polygons, then there are 3 steps to create non-intersecting lines. First click "Vector" -> "Geometry Tools" -> "Polygons to Lines". Second click "Vector" -> "Geoprocessing Tools" -> "Dissolve" -> "Dissolve All". Third click "Processing" -> "Toolbox" and type "Explode Lines", and run the "Explode Lines" algorithm. See the screenshot uploaded into the repository.
+
