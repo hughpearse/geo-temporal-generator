@@ -51,10 +51,11 @@ def main(argv):
 	print "Id,Startdate,Enddate,Latitude,Longtitude,Category,Bool,Integer,Float,Text"
 	
 	for num in range(0,rows):
-		d1 = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M:%S')
-		d2 = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M:%S')
-		randdate = random_date(d1, d2)
-		enddate = randdate + timedelta(days=randint(0,365), hours=randint(0,24), minutes=randint(0,60), seconds=randint(0,60))
+		min_date = datetime.strptime(mindatetime, '%Y-%m-%d %H:%M:%S')
+		max_date = datetime.strptime(maxdatetime, '%Y-%m-%d %H:%M:%S')
+		startdate = random_date(min_date, max_date)
+		date_diff = max_date - startdate
+		enddate = random_date(startdate, max_date)
 	
 		lat = random.uniform(minlat,maxlat)
 		long = random.uniform(minlong,maxlong)
@@ -68,7 +69,7 @@ def main(argv):
 
 		#print "%s%s%s%s%s" % (randdate,',',lat,',',long)
 		#print "%s%s%s%s" % ('http://www.openstreetmap.org/#map=16/',lat,'/',long)
-		print "%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"" % (num,randdate,enddate,lat,long,discreteval,dichotomousval,continuousint,continiousfloat,randomtext)
+		print "%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"" % (num,startdate,enddate,lat,long,discreteval,dichotomousval,continuousint,continiousfloat,randomtext)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
