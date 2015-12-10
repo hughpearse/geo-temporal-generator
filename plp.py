@@ -18,8 +18,8 @@ from sets import Set
 from itertools import tee, izip
 
 def show_help():
-	print './plp.py <min lat> <min long> <max lat> <max long> <rows> <type>'
-	print './plp.py 53.438528 -6.403656 53.196751 -6.099472 20 points'
+	print './plp.py <type> <min lat> <min long> <max lat> <max long> <rows>'
+	print './plp.py points 53.438528 -6.403656 53.196751 -6.099472 20'
 	print 'Outputs: either POINT(...), LineString(... , ...) or POLYGON ((... , ... , ...)) in CSV format'
 
 def unique_rows(A, return_index=False, return_inverse=False):
@@ -145,13 +145,13 @@ def main(argv):
 	if (len(sys.argv) == 1):
 		show_help()
 		sys.exit(0)
-	
-	minlat = float(sys.argv[1])
-        minlong = float(sys.argv[2])
-        maxlat = float(sys.argv[3])
-        maxlong = float(sys.argv[4])
-	rows = int(sys.argv[5])
-	type = sys.argv[6]
+
+	type = sys.argv[1]
+	minlat = float(sys.argv[2])
+        minlong = float(sys.argv[3])
+        maxlat = float(sys.argv[4])
+        maxlong = float(sys.argv[5])
+	rows = int(sys.argv[6])
 	
 	if( fabs(minlat) > 85.05113 or fabs(maxlat) > 85.05113 ):
 		print "Lattitude not within acceptable range"
@@ -159,6 +159,8 @@ def main(argv):
 	if( fabs(minlong) > 179.999999999 or fabs(maxlong) > 179.999999999 ):
 		print "Longtitude not within acceptable range"
 		sys.exit(0)
+	
+	radius = max([ abs(abs(minlat)-abs(maxlat)), abs(abs(minlong)-abs(maxlong)) ])
 	
 	#header
 	print "WKT"
@@ -176,20 +178,28 @@ def main(argv):
 	
 	if( type == "polygons" ):
 		vor = Voronoi(points)
-		regions, vertices = voronoi_finite_polygons_2d(vor)
+		regions, vertices = voronoi_finite_polygons_2d(vor, radius=radius)
+		
+		#print vor.vertices
+		#print vor.regions
+		#print "======================="
+		#print vertices
+		#print regions
+		#print "======================="
 		
 		for polygonvertexoffsets in regions:
 			#print polygonvertexoffsets
 			print '"POLYGON((',
 			
-			for vertexoffset in polygonvertexoffsets[:-1]:
+			for vertexoffset in polygonvertexoffsets:
 				vertex = vertices[vertexoffset]
 				print vertex[0],
 				print ' ',
 				print vertex[1],
 				print ',',
 			#dont place output after last coordinate
-			vertexoffset = polygonvertexoffsets[-1]
+			vertexoffset = polygonvertexoffsets[0]
+			vertex = vertices[vertexoffset]
 			print vertex[0],
 			print ' ',
 			print vertex[1],
@@ -197,7 +207,7 @@ def main(argv):
 
 	if( type == "lines" ):
 		vor = Voronoi(points)
-                regions, vertices = voronoi_finite_polygons_2d(vor)
+                regions, vertices = voronoi_finite_polygons_2d(vor, radius=radius)
 		lines = np.empty(shape=[0, 4])
 		
 		for polygonvertexoffsets in regions:
