@@ -19,8 +19,8 @@ from itertools import tee, izip
 
 def show_help():
 	print './plp.py <type> <min lat> <min long> <max lat> <max long> <rows>'
-	print './plp.py points 53.438528 -6.403656 53.196751 -6.099472 20'
-	print 'Outputs: either POINT(...), LineString(... , ...) or POLYGON ((... , ... , ...)) in CSV format'
+	print './plp.py points 85.0 -179.0 -85.0 179.0 20'
+	print 'Outputs: either POINT(...), LINESTRING(... , ...) or POLYGON ((... , ... , ...)) in CSV format'
 
 def unique_rows(A, return_index=False, return_inverse=False):
 	"""
