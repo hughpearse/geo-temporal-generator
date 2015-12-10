@@ -12,9 +12,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def show_help():
-	print './georand.py <min lat> <min long> <max lat> <max long> <rows> <type>'
-	print './georand.py 53.438528 -6.403656 53.196751 -6.099472 20 points'
-	print 'Outputs: latitude,longtitude'
+	print './plp.py <min lat> <min long> <max lat> <max long> <rows> <type>'
+	print './plp.py 53.438528 -6.403656 53.196751 -6.099472 20 points'
+	print 'Outputs: either POINT(...), LineString(... , ...) or POLYGON ((... , ... , ...)) in CSV format'
 
 def voronoi_finite_polygons_2d(vor, radius=None):
 	"""
