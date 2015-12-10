@@ -160,7 +160,7 @@ def main(argv):
 		print "Longtitude not within acceptable range"
 		sys.exit(0)
 	
-	radius = max([ abs(abs(minlat)-abs(maxlat)), abs(abs(minlong)-abs(maxlong)) ])
+	radius = max([ fabs(minlat-maxlat), fabs(minlong-maxlong) ])/2
 	
 	#header
 	print "WKT"
@@ -193,16 +193,16 @@ def main(argv):
 			
 			for vertexoffset in polygonvertexoffsets:
 				vertex = vertices[vertexoffset]
-				print vertex[0],
-				print ' ',
 				print vertex[1],
+				print ' ',
+				print vertex[0],
 				print ',',
 			#dont place output after last coordinate
 			vertexoffset = polygonvertexoffsets[0]
 			vertex = vertices[vertexoffset]
-			print vertex[0],
-			print ' ',
 			print vertex[1],
+			print ' ',
+			print vertex[0],
 			print '))"'
 
 	if( type == "lines" ):
@@ -215,7 +215,7 @@ def main(argv):
 				vertex1 = vertices[voffset1]
 				vertex2 = vertices[voffset2]
 				#aline =  (vertex1,vertex2)
-				lines = np.append(lines, [[vertex1[0], vertex1[1], vertex2[0], vertex2[1]]], axis=0)
+				lines = np.append(lines, [[vertex1[1], vertex1[0], vertex2[1], vertex2[0]]], axis=0)
 		
 		uniquelines = unique_rows(lines)
 		for line in uniquelines:
