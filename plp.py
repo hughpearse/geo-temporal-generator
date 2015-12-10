@@ -1,5 +1,6 @@
 #!/bin/python
 
+#points imports
 import sys, getopt, random, string, datetime
 import re
 from math import *
@@ -7,14 +8,46 @@ from datetime import timedelta
 from datetime import datetime
 from random import randint
 
+#polygons imports
 from scipy.spatial import Voronoi
 import numpy as np
 import matplotlib.pyplot as plt
+
+#lines imports
+from sets import Set
+from itertools import tee, izip
 
 def show_help():
 	print './plp.py <min lat> <min long> <max lat> <max long> <rows> <type>'
 	print './plp.py 53.438528 -6.403656 53.196751 -6.099472 20 points'
 	print 'Outputs: either POINT(...), LineString(... , ...) or POLYGON ((... , ... , ...)) in CSV format'
+
+def unique_rows(A, return_index=False, return_inverse=False):
+	"""
+	Similar to MATLAB's unique(A, 'rows'), this returns B, I, J
+	where B is the unique rows of A and I and J satisfy
+	A = B[J,:] and B = A[I,:]
+
+	Returns I if return_index is True
+	Returns J if return_inverse is True
+	"""
+	A = np.require(A, requirements='C')
+	assert A.ndim == 2, "array must be 2-dim'l"
+
+	B = np.unique(A.view([('', A.dtype)]*A.shape[1]),
+			   return_index=return_index,
+			   return_inverse=return_inverse)
+
+	if return_index or return_inverse:
+		return (B[0].view(A.dtype).reshape((-1, A.shape[1]), order='C'),) \
+			+ B[1:]
+	else:
+		return B.view(A.dtype).reshape((-1, A.shape[1]), order='C')
+
+def pairwise(iterable):
+	a, b = tee(iterable)
+	next(b, None)
+	return izip(a, b)
 
 def voronoi_finite_polygons_2d(vor, radius=None):
 	"""
@@ -147,7 +180,7 @@ def main(argv):
 		
 		for polygonvertexoffsets in regions:
 			#print polygonvertexoffsets
-			print '"LineString(',
+			print '"POLYGON((',
 			
 			for vertexoffset in polygonvertexoffsets[:-1]:
 				vertex = vertices[vertexoffset]
@@ -155,10 +188,29 @@ def main(argv):
 				print ' ',
 				print vertex[1],
 				print ',',
+			#dont place output after last coordinate
 			vertexoffset = polygonvertexoffsets[-1]
 			print vertex[0],
 			print ' ',
 			print vertex[1],
+			print '))"'
+
+	if( type == "lines" ):
+		vor = Voronoi(points)
+                regions, vertices = voronoi_finite_polygons_2d(vor)
+		lines = np.empty(shape=[0, 4])
+		
+		for polygonvertexoffsets in regions:
+			for voffset1, voffset2 in pairwise(polygonvertexoffsets):
+				vertex1 = vertices[voffset1]
+				vertex2 = vertices[voffset2]
+				#aline =  (vertex1,vertex2)
+				lines = np.append(lines, [[vertex1[0], vertex1[1], vertex2[0], vertex2[1]]], axis=0)
+		
+		uniquelines = unique_rows(lines)
+		for line in uniquelines:
+			print '"LINESTRING(',
+			print line[0], line[1], ',', line[2], line[3],
 			print ')"'
 
 if __name__ == "__main__":
