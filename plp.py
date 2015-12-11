@@ -228,7 +228,9 @@ def main(argv):
 			for voffset1, voffset2 in pairwise(polygonvertexoffsets):
 				vertex1 = vertices[voffset1]
 				vertex2 = vertices[voffset2]
-				lines = np.append(lines, [[vertex1[1], vertex1[0], vertex2[1], vertex2[0]]], axis=0)
+				if( (min([minlat, maxlat]) <= vertex1[0] <= max([minlat, maxlat])) and (min([minlong, maxlong]) <= vertex1[1] <= max([minlong, maxlong])) ):
+					if( (min([minlat, maxlat]) <= vertex2[0] <= max([minlat, maxlat])) and (min([minlong, maxlong]) <= vertex2[1] <= max([minlong, maxlong])) ):
+						lines = np.append(lines, [[vertex1[1], vertex1[0], vertex2[1], vertex2[0]]], axis=0)
 		
 		uniquelines = unique_rows(lines)
 		for line in uniquelines:
