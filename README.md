@@ -45,7 +45,10 @@ Id,Startdate,Enddate,Latitude,Longtitude,Category,Integer,Float
 ##Creating Lines and Polygons:
 Non-intersecting lines and polygons can easily be created from the resulting CSV file. To create the polygons simply run:
 ```
+$ ./plp.py -h
 ./plp.py <type> <min lat> <min long> <max lat> <max long> <rows>
+Outputs: either POINT(...), LINESTRING(... , ...) or POLYGON ((... , ... , ...)) in CSV format
+./plp.py points 85.0 -179.0 -85.0 179.0 20
 WKT
 "LINESTRING( -165.181560897 -3.01783820059 , -143.343572785 -18.0569546557 )"
 "LINESTRING( -143.343572785 -18.0569546557 , -126.91437369 -28.5941179244 )"
