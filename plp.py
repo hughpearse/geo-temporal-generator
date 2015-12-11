@@ -191,16 +191,22 @@ def main(argv):
 		for polygonvertexoffsets in regions:
 			
 			print '"POLYGON((',
-			
+			firstvertex=None
+			firstisset="False"
 			for vertexoffset in polygonvertexoffsets:
 				vertex = vertices[vertexoffset]
+				
 				if( (min([minlat, maxlat]) <= vertex[0] <= max([minlat, maxlat])) and (min([minlong, maxlong]) <= vertex[1] <= max([minlong, maxlong])) ):
+					if firstisset == "False":
+						firstvertex = vertex
+						firstisset = "True"
 					print vertex[1], ' ', vertex[0], ',',
-			
+								
 			#dont output comma after last coordinate
-			vertexoffset = polygonvertexoffsets[0]
-			vertex = vertices[vertexoffset]
-			print vertex[1], ' ', vertex[0], '))"'
+			#vertexoffset = polygonvertexoffsets[0]
+			#vertex = vertices[vertexoffset]
+			#print vertex[1], ' ', vertex[0], '))"'
+			print firstvertex[1], ' ', firstvertex[0], '))"'
 
 	if( type == "lines" ):
 		vor = Voronoi(points)
