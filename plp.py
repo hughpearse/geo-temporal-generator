@@ -160,7 +160,8 @@ def main(argv):
 		print "Longtitude not within acceptable range"
 		sys.exit(0)
 	
-	radius = max([ fabs(minlat-maxlat), fabs(minlong-maxlong) ])/2
+	#radius = max([ fabs(minlat-maxlat), fabs(minlong-maxlong) ])/2
+	radius = 0
 	
 	#header
 	print "WKT"
@@ -188,22 +189,18 @@ def main(argv):
 		#print "======================="
 		
 		for polygonvertexoffsets in regions:
-			#print polygonvertexoffsets
+			
 			print '"POLYGON((',
 			
 			for vertexoffset in polygonvertexoffsets:
 				vertex = vertices[vertexoffset]
-				print vertex[1],
-				print ' ',
-				print vertex[0],
-				print ',',
-			#dont place output after last coordinate
+				if( (min([minlat, maxlat]) <= vertex[0] <= max([minlat, maxlat])) and (min([minlong, maxlong]) <= vertex[1] <= max([minlong, maxlong])) ):
+					print vertex[1], ' ', vertex[0], ',',
+			
+			#dont output comma after last coordinate
 			vertexoffset = polygonvertexoffsets[0]
 			vertex = vertices[vertexoffset]
-			print vertex[1],
-			print ' ',
-			print vertex[0],
-			print '))"'
+			print vertex[1], ' ', vertex[0], '))"'
 
 	if( type == "lines" ):
 		vor = Voronoi(points)
@@ -214,14 +211,11 @@ def main(argv):
 			for voffset1, voffset2 in pairwise(polygonvertexoffsets):
 				vertex1 = vertices[voffset1]
 				vertex2 = vertices[voffset2]
-				#aline =  (vertex1,vertex2)
 				lines = np.append(lines, [[vertex1[1], vertex1[0], vertex2[1], vertex2[0]]], axis=0)
 		
 		uniquelines = unique_rows(lines)
 		for line in uniquelines:
-			print '"LINESTRING(',
-			print line[0], line[1], ',', line[2], line[3],
-			print ')"'
+			print '"LINESTRING(', line[0], line[1], ',', line[2], line[3], ')"'
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
