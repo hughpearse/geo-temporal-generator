@@ -43,7 +43,22 @@ Id,Startdate,Enddate,Latitude,Longtitude,Category,Integer,Float
 ```
 
 ##Creating Lines and Polygons:
-Non-intersecting lines and polygons can easily be created from the resulting CSV file. ~~To create the polygons import the CSV file into QGIS by clicking "Layer" -> "Add Layer" -> "Delimited Text Layer". To create polygons there are 2 steps. Create Polygons from Points by clicking "Vector" -> "Geometry Tools" -> "Voronoi Polygons". Then to remove the overlapping part of adjacent polygons click "Processing" -> "Toolbox" and type "Delete duplicate geometries". To create the lines, you must first create the polygons, then there are 3 steps to create non-intersecting lines. First click "Vector" -> "Geometry Tools" -> "Polygons to Lines". Second click "Vector" -> "Geoprocessing Tools" -> "Dissolve" -> "Dissolve All". Third click "Processing" -> "Toolbox" and type "Explode Lines", and run the "Explode Lines" algorithm. See the screenshot uploaded into the repository. The resulting lines and polygons can be exported to a CSV file by right clicking on the layer and pressing "Save As: file-name.csv" -> "Format: Comma Separated Value [CSV]",  "CRS: Layer CRS", "Skip attribute creation", "Layer Options, GEOMETRY: AS_WKT", "OK".~~
-To create the polygons simply run:
+Non-intersecting lines and polygons can easily be created from the resulting CSV file. To create the polygons simply run:
+```
 ./plp.py <type> <min lat> <min long> <max lat> <max long> <rows>
+WKT
+"LINESTRING( -165.181560897 -3.01783820059 , -143.343572785 -18.0569546557 )"
+"LINESTRING( -143.343572785 -18.0569546557 , -126.91437369 -28.5941179244 )"
+"LINESTRING( -126.91437369 -28.5941179244 , -95.5079308975 -63.2047530607 )"
+"LINESTRING( -126.91437369 -28.5941179244 , -78.4616858741 -5.22163102457 )"
+"LINESTRING( -124.551304676 32.3757363823 , -165.181560897 -3.01783820059 )"
+"LINESTRING( -124.551304676 32.3757363823 , -80.4355331333 5.12024753256 )"
+"LINESTRING( -95.5079308975 -63.2047530607 , -58.6511626242 -42.8311444621 )"
+"LINESTRING( -80.4355331333 5.12024753256 , -124.551304676 32.3757363823 )"
+"LINESTRING( -80.4355331333 5.12024753256 , -59.4236136414 50.4350461598 )"
+"LINESTRING( -78.4616858741 -5.22163102457 , -126.91437369 -28.5941179244 )"
+"LINESTRING( -77.3836744276 -0.243178958385 , -80.4355331333 5.12024753256 )"
+"LINESTRING( -77.3836744276 -0.243178958385 , -12.4588994682 17.048519809 )"
+"LINESTRING( -59.4236136414 50.4350461598 , -12.4588994682 17.048519809 )"
+```
 
