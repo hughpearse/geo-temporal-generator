@@ -190,9 +190,10 @@ def main(argv):
 		
 		for polygonvertexoffsets in regions:
 			
-			print '"POLYGON((',
+			polygonstring= '"POLYGON(('
 			firstvertex=None
 			firstisset="False"
+			pointcount=0
 			for vertexoffset in polygonvertexoffsets:
 				vertex = vertices[vertexoffset]
 				
@@ -200,13 +201,23 @@ def main(argv):
 					if firstisset == "False":
 						firstvertex = vertex
 						firstisset = "True"
-					print vertex[1], ' ', vertex[0], ',',
+					try:
+						polygonstring += str(vertex[1]) + ' ' + str(vertex[0]) + ','
+						pointcount += 1
+					except:
+						print ""
 								
 			#dont output comma after last coordinate
 			#vertexoffset = polygonvertexoffsets[0]
 			#vertex = vertices[vertexoffset]
 			#print vertex[1], ' ', vertex[0], '))"'
-			print firstvertex[1], ' ', firstvertex[0], '))"'
+			try:
+				polygonstring += str(firstvertex[1]) + ' ' + str(firstvertex[0]) + '))"'
+			except:
+				print ""
+			
+			if(pointcount >= 3):
+				print polygonstring
 
 	if( type == "lines" ):
 		vor = Voronoi(points)
